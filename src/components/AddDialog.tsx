@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AddDialogProps } from "../interfaces/interfaces";
+import { AddDialogProps } from "../types/types";
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 
 const AddDialog = ({ addCustomer }: AddDialogProps) => {

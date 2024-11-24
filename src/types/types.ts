@@ -1,15 +1,15 @@
-export interface Customer {
-    id: number,
+export type Customer = {
+    _id: string,
     firstname: string,
     lastname: string,
     phone: string
 }
 
-export interface AddDialogProps {
+export type AddDialogProps = {
     addCustomer: (customer: Customer) => Promise<void>
 }
 
-export interface EditDialogProps {
+export type EditDialogProps = {
     existingCustomer: Customer,
     editCustomer: (customer: Customer) => Promise<void>
 }

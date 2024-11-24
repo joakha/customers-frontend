@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
-import { EditDialogProps } from "../interfaces/interfaces";
+import { EditDialogProps } from "../types/types";
 
 const EditDialog = ({ existingCustomer, editCustomer }: EditDialogProps) => {
 
