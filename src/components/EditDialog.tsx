@@ -24,7 +24,7 @@ const EditDialog = ({ existingCustomer, editCustomer }: EditDialogProps) => {
         setOpen(false);
         setCustomer(
             {
-                id: existingCustomer.id,
+                _id: existingCustomer._id,
                 firstname: existingCustomer.firstname,
                 lastname: existingCustomer.lastname,
                 phone: existingCustomer.phone

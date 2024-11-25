@@ -1,5 +1,5 @@
 import './App.css'
-import AddModal from './components/AddDialog'
+import AddDialog from './components/AddDialog'
 import EditDialog from './components/EditDialog'
 import { Customer } from './types/types.ts'
 import { Button } from '@mui/material'
@@ -25,13 +25,38 @@ function App() {
   }
 
   const addCustomer = async (customer: Customer) => {
-    console.log("Adding new Customer...");
-    console.log(customer);
+    try {
+      const response = await fetch(backendURL + "/customers", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(customer) });
+      if (!response.ok) {
+        throw new Error("Issue adding a customer to database!");
+      }
+
+      const responseJSON = await response.json();
+      console.log(responseJSON);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      getCustomers();
+    }
   }
 
   const editCustomer = async (customer: Customer) => {
-    console.log("Editing Customer Info...");
-    console.log(customer);
+    console.log(customer._id)
+    try {
+      const response = await fetch(backendURL + "/customers", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(customer) });
+
+      if (!response.ok) {
+        throw new Error("Issue editing customer in database!");
+      }
+
+      const responseJSON = await response.json();
+      console.log(responseJSON);
+    }
+    catch (error) {
+      console.error(error);
+    } finally {
+      getCustomers();
+    }
   }
 
   const deleteCustomer = async (id: string) => {
@@ -41,10 +66,11 @@ function App() {
         if (response.ok) {
           const responseMessage = await response.json();
           console.log(responseMessage);
-          getCustomers();
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        getCustomers();
       }
     }
   }
@@ -84,7 +110,7 @@ function App() {
             }))
         }
       </section>
-      <AddModal addCustomer={addCustomer} />
+      <AddDialog addCustomer={addCustomer} />
     </main>
   )
 }

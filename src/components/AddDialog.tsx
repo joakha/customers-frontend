@@ -6,7 +6,7 @@ const AddDialog = ({ addCustomer }: AddDialogProps) => {
 
     const [open, setOpen] = useState(false);
     const [customer, setCustomer] = useState({
-        id: 0,
+        _id: "",
         firstname: "",
         lastname: "",
         phone: ""
@@ -25,7 +25,7 @@ const AddDialog = ({ addCustomer }: AddDialogProps) => {
         setOpen(false);
         setCustomer(
             {
-                id: 0,
+                _id: "",
                 firstname: "",
                 lastname: "",
                 phone: ""
@@ -37,7 +37,7 @@ const AddDialog = ({ addCustomer }: AddDialogProps) => {
         setOpen(false);
         setCustomer(
             {
-                id: 0,
+                _id: "",
                 firstname: "",
                 lastname: "",
                 phone: ""
