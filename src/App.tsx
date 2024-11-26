@@ -1,7 +1,7 @@
 import './App.css'
 import AddDialog from './components/AddDialog'
 import EditDialog from './components/EditDialog'
-import { Customer } from './types/types.ts'
+import { Company, Customer } from './types/types.ts'
 import { Button } from '@mui/material'
 import { backendURL } from './constants/constants.ts'
 import { useEffect, useState } from 'react'
@@ -25,8 +25,10 @@ function App() {
   }
 
   const addCustomer = async (customer: Customer) => {
+    console.log(customer)
     try {
       const response = await fetch(backendURL + "/customers", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(customer) });
+
       if (!response.ok) {
         throw new Error("Issue adding a customer to database!");
       }
@@ -94,6 +96,7 @@ function App() {
                   <div className='customer-info'>
                     <div>{customer.firstname} {customer.lastname} </div>
                     <div>{customer.phone}</div>
+                    <div>{(customer.company as Company).name}</div>
                   </div>
 
                   <EditDialog existingCustomer={customer} editCustomer={editCustomer} />
