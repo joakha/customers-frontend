@@ -73,7 +73,6 @@ const AddDialog = ({ addCustomer }: AddDialogProps) => {
     }
 
     return (
-
         <>
             <Button
                 variant="contained"
