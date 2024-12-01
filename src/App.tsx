@@ -11,6 +11,10 @@ function App() {
   const [loadingCustomers, setLoadingCustomers] = useState(false);
   const [customers, setCustomers] = useState<Customer[]>([]);
 
+  const JWT = import.meta.env.VITE_JWT;
+
+  console.log(JWT)
+
   const getCustomers = async () => {
     try {
       setLoadingCustomers(true);
@@ -27,7 +31,8 @@ function App() {
   const addCustomer = async (customer: Customer) => {
     console.log(customer)
     try {
-      const response = await fetch(backendURL + "/customers", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(customer) });
+      const response = await fetch(backendURL + "/customers", 
+        { method: "POST", headers: { "Content-Type": "application/json", "Authorization": `Bearer ${JWT}`}, body: JSON.stringify(customer) });
 
       if (!response.ok) {
         throw new Error("Issue adding a customer to database!");
